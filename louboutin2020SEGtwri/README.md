@@ -19,6 +19,8 @@ The julia packages can be installed as follows once [Devito] is installed.
 First, you need install JUDI with the TTI branch that is currently separated from the stable master branch:
 
 ```
+julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/slimgroup/JOLI.jl"))'
+julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/slimgroup/SegyIO.jl"))'
 julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/slimgroup/JUDI.jl.git", rev="v1-tti"))'
 
 ```
