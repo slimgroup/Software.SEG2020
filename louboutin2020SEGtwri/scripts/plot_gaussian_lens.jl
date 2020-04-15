@@ -4,7 +4,7 @@ PyPlot.rc("font", family="serif")
 PyPlot.rc("xtick", labelsize=20) 
 PyPlot.rc("ytick", labelsize=20)
 
-@load "./data/tti_g.jld"
+@load "./data/gl_tti_g.jld"
 
 n = model_true.n
 d = model_true.d
@@ -60,7 +60,7 @@ ax1 = gca()
 colorbar(ax=ax1)
 
 subplot(122)
-imshow(model0.m' - model_true.m', vmin=-.05, vmax=.05, cmap="jet", extent=extent, aspect="auto")
+imshow(model0_tti.m' - model_true.m', vmin=-.05, vmax=.05, cmap="jet", extent=extent, aspect="auto")
 xlabel("X (m)", fontsize=20)
 ax1 = gca()
 ax1.set_yticks([])
@@ -73,7 +73,7 @@ savefig("./data/gl_dm.png", bbox_inches="tight")
 ### Plot gradients
 
 # True tti params
-@load "tti_g.jld"
+@load "./data/gl_tti_g.jld"
 figure(figsize=(30, 30))
 subplot(321)
 imshow(g_wri_tti', vmin=-1, vmax=1, cmap="jet", extent=extent, aspect="auto")
@@ -92,7 +92,7 @@ title("FWI true anisotropy", fontsize=20)
 colorbar(ax=ax1)
 
 # Error in tti params
-@load "tti_g_w.jld"
+@load "./data/gl_tti_g_w.jld"
 subplot(323)
 imshow(g_wri_tti_w', vmin=-1, vmax=1, cmap="jet", extent=extent, aspect="auto")
 ylabel("Depth (m)", fontsize=20)
@@ -109,16 +109,16 @@ title("FWI inaccurate anisotropy", fontsize=20)
 colorbar(ax=ax1)
 
 # Acosutic WE gradient
-@load "acou_g.jld"
+@load "./data/gl_acou_g.jld"
 subplot(325)
-imshow(g_wri_a', vmin=-1, vmax=1, cmap="jet", extent=extent, aspect="auto")
+imshow(g_wri_a', vmin=-.1, vmax=.1, cmap="jet", extent=extent, aspect="auto")
 xlabel("X (m)", fontsize=20)
 ylabel("Depth (m)", fontsize=20)
 ax1 = gca()
 title("WRI acoustic", fontsize=20)
 colorbar(ax=ax1)
 subplot(326)
-imshow(g_fwi_a', vmin=-.5, vmax=.5, cmap="jet", extent=extent, aspect="auto")
+imshow(g_fwi_a', vmin=-.25, vmax=.25, cmap="jet", extent=extent, aspect="auto")
 xlabel("X (m)", fontsize=20)
 ax1 = gca()
 ax1.set_yticks([])

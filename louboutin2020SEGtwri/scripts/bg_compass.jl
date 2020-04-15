@@ -10,7 +10,7 @@ push!(LOAD_PATH, string(pwd(), "/src/"));
 using TWRIdual
 
 ### Load synthetic data
-@load "./data/BGCompass/BGCompass_data_tti.jld"
+@load "./data/BGCompass_data_tti.jld"
 
 # Filter data
 freq = 0.003f0
@@ -24,11 +24,12 @@ idx_w = 0
 var = 20
 n = model_true.n
 d = model_true.d
+o = model_true.o
 
 
 
 function compute_gradients(model0, fsrc, dat, idx_w)
-    m0 = model0
+    m0 = model0.m
     # Time sampling
     dt_comp = get_dt(model0)
     nt_comp = get_computational_nt(fsrc.geometry, dat.geometry, model0)
@@ -42,7 +43,7 @@ function compute_gradients(model0, fsrc, dat, idx_w)
 
     # [FWI]
     inv_name = "FWI"
-    fun!(F, G, x) = objFWI!(F, G, preproc(x), model0, fsrc, dat; gradprec_fun=postproc)
+    fun!(F, G, x) = objFWI!(F, G, preproc(x), model0, fsrc, dat; gradmprec_fun=postproc)
 
     # [TWRIdual]
     inv_name = "TWRIdual"
@@ -57,15 +58,15 @@ function compute_gradients(model0, fsrc, dat, idx_w)
     δ = 1f0*R(sqrt(2)/2)*v_bg/freq_peak
     weight_fun_pars = ("srcfocus", δ)
     fun!(F, G, x, weight_fun_pars, objfact) = objTWRIdual!(F, G, preproc(x), model0, fsrc, dat, ε;
-                                                        objfact = objfact, comp_alpha = true, gradprec_fun=postproc,
+                                                        objfact = objfact, comp_alpha = true, gradmprec_fun=postproc,
                                                         grad_corr = grad_corr, weight_fun_pars = weight_fun_pars)
 
     fun_wri!(F, G, x) = fun!(F, G, x, weight_fun_pars, objfact)
     ### Computing gradients
     x0 = zeros(R, length(findall(mask .== true)))
-    m_inv = preproc(x0)
+
     G_FWI = zeros(R, n)
-    G = zeros(R, size(mask))
+    G = zeros(R, size(x0))
     fun!(true, G, x0)
     G_FWI[mask] .= G
     G_FWI = G_FWI/norm(G_FWI, Inf)
@@ -74,7 +75,7 @@ function compute_gradients(model0, fsrc, dat, idx_w)
     x02 = zeros(R, length(findall(mask .== true)))
     m_inv2 = preproc(x0)
     G_WRI = zeros(R, n)
-    G2 = zeros(R, size(mask))
+    G2 = zeros(R, size(x02))
     fun_wri!(true, G2, x02)
     G_WRI[mask] .= G2
     G_WRI = G_WRI/norm(G_WRI, Inf)
@@ -87,7 +88,7 @@ end
 idx_w = 17
 # True Thomsen parameters model
 model0_tti = deepcopy(model_true)
-model0_tti.m .= R.(imfilter(model0.m[:, idx_w+1:end], Kernel.gaussian(var)))
+model0_tti.m[:, idx_w+1:end] .= R.(imfilter(model0_tti.m[:, idx_w+1:end], Kernel.gaussian(var)))
 
 g_fwi_tti, g_wri_tti = compute_gradients(model0_tti, fsrc2, dat2, idx_w)
 @save "./data/bg_tti_g.jld" g_fwi_tti g_wri_tti model0_tti model_true
@@ -115,7 +116,7 @@ g_fwi_a, g_wri_a = compute_gradients(model0_acou, fsrc2, dat2, idx_w)
 idx_w = 0
 # True Thomsen parameters model
 model0_tti = deepcopy(model_true)
-model0_tti.m .= R.(imfilter(model0.m[:, idx_w+1:end], Kernel.gaussian(var)))
+model0_tti.m[:, idx_w+1:end] .= R.(imfilter(model0_tti.m[:, idx_w+1:end], Kernel.gaussian(var)))
 
 g_fwi_tti_ww, g_wri_tti_ww = compute_gradients(model0_tti, fsrc2, dat2, idx_w)
 @save "./data/bg_tti_g_ww.jld" g_fwi_tti_ww g_wri_tti_ww model0_tti model_true

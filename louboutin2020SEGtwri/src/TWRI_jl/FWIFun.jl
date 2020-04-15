@@ -31,7 +31,6 @@ function objFWI!(
 	argout = objFWI(m, n, d, o, wav, dat; opt = opt, mode = mode, dt_comp = dt_comp, Filter = Filter, gradmprec_fun = gradmprec_fun)
 	if Gm != nothing
 		fval = argout[1]
-		println(size(Gm), " ", size(argout[2]))
 		Gm .= argout[2]
 	else
 		fval = argout

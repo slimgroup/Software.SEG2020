@@ -24,10 +24,11 @@ idx_w = 0
 var = 20
 n = model_true.n
 d = model_true.d
+o = model_true.o
 
 
 function compute_gradients(model0, fsrc, dat)
-    m0 = model0
+    m0 = model0.m
     # Time sampling
     dt_comp = get_dt(model0)
     nt_comp = get_computational_nt(fsrc.geometry, dat.geometry, model0)
@@ -41,39 +42,39 @@ function compute_gradients(model0, fsrc, dat)
 
     # [FWI]
     inv_name = "FWI"
-    fun!(F, G, x) = objFWI!(F, G, preproc(x), model0, fsrc, dat; gradprec_fun=postproc)
+    fun!(F, G, x) = objFWI!(F, G, preproc(x), model0, fsrc, dat; gradmprec_fun=postproc)
 
     # [TWRIdual]
     inv_name = "TWRIdual"
 
-    ε0 = 0.0f0
+    ε0 = 0.01f0
     ε = Array{Float32, 1}(undef, fsrc.nsrc)
     ε .= ε0
     grad_corr = false
     objfact = 1f0
     v_bg = sqrt(1/m0[1])
-    freq_peak = 0.005f0
+    freq_peak = 0.003f0
     δ = 1f0*R(sqrt(2)/2)*v_bg/freq_peak
     weight_fun_pars = ("srcfocus", δ)
     fun!(F, G, x, weight_fun_pars, objfact) = objTWRIdual!(F, G, preproc(x), model0, fsrc, dat, ε;
-                                                        objfact = objfact, comp_alpha = true, gradprec_fun=postproc,
+                                                        objfact = objfact, comp_alpha = true, gradmprec_fun=postproc,
                                                         grad_corr = grad_corr, weight_fun_pars = weight_fun_pars)
 
     fun_wri!(F, G, x) = fun!(F, G, x, weight_fun_pars, objfact)
     ### Computing gradients
     x0 = zeros(R, length(findall(mask .== true)))
-    m_inv = preproc(x0)
+
     G_FWI = zeros(R, n)
-    G = zeros(R, size(mask))
+    G = zeros(R, size(x0))
     fun!(true, G, x0)
     G_FWI[mask] .= G
     G_FWI = G_FWI/norm(G_FWI, Inf)
 
     ### Computing gradients
     x02 = zeros(R, length(findall(mask .== true)))
-    m_inv2 = preproc(x0)
+
     G_WRI = zeros(R, n)
-    G2 = zeros(R, size(mask))
+    G2 = zeros(R, size(x02))
     fun_wri!(true, G2, x02)
     G_WRI[mask] .= G2
     G_WRI = G_WRI/norm(G_WRI, Inf)
@@ -105,5 +106,5 @@ g_fwi_tti_w, g_wri_tti_w = compute_gradients(model0_tti_err, fsrc2, dat2)
 # Acoustic model
 model0_acou = Model(n, d, o, model0_tti.m)
 
-g_fwi_a, g_wri_a = compute_gradients(model0_acou, fsrc2, dat2)
+g_fwi_a, g_wri_a = compute_gradients(model0_acou, fsrc, dat)
 @save "./data/gl_acou_g.jld" g_fwi_a g_wri_a model0_acou model_true

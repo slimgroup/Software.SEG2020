@@ -71,7 +71,7 @@ def adjoint_y(model, y, src_coords, rcv_coords, weight_fun_pars=None,
     norm_v, norm_v_expr = weighted_norm(v, weight=weights)
     # Create operator and run
     subs = model.spacing_map
-    op = create_op(pde + norm_v_expr + geom_expr, subs=subs, name="adjoint_y"+name(model))
+    op = create_op(pde + geom_expr + norm_v_expr, subs=subs, name="adjoint_y"+name(model))
     if return_op:
         return op
     op()
