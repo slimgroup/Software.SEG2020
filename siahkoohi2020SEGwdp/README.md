@@ -85,6 +85,10 @@ To generate and save figures shown in the manuscript, run `sample.py` with appro
 
 Please contact alisk@gatech.edu for further questions.
 
+## Acknowledgments
+
+The authors thank Zezhou Cheng for his open-access [GitHub repository](https://github.com/ZezhouCheng/GP-DIP). We also thank Philipp Witte for his contribuitions in integrating Devito operators in PyTorch.
+
 
 ## Author
 
