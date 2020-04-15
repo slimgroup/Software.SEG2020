@@ -36,12 +36,19 @@ julia -e 'using Pkg; Pkg.add("IMAGES")'
 julia -e 'using Pkg; Pkg.add("PyPlot")'
 ```
 
+[Devito]:htttp;//github.com/devitocodes/devito
+[JUDI]:http://github.com/slimgroup/JUDI.jl
+[JLD2]:https://github.com/JuliaIO/JLD2.jl
+[Images]:https://github.com/JuliaImages/Images.jl
+[PyPlot]:https://github.com/JuliaPy/PyPlot.jl
+
 ## Software
 
 This software is divided as follows:
 
 *data/*:
- THis directory contains  the velocity model and Thomsen parameters for the BG compass model in `bg_tti.jld` in the julia `JLD2` format. This directory then contains two script to generate the data required for the gradient computations. Please run bothh of these script from this directory:
+
+ This directory contains  the velocity model and Thomsen parameters for the BG compass model in `bg_tti.jld` in the julia `JLD2` format. This directory then contains two script to generate the data required for the gradient computations. Please run bothh of these script from this directory:
 ```bash
 $ julia data/gen_data_bg.jl
 $ julia data/gen_data_GaussiaLens.jl
@@ -61,8 +68,23 @@ This folder contains four script, two to generate the results and two to plot th
 - `bg_compass.jl` generates the six different gradient for both FWI and WRI (twelve total) for the three different test case and two different water layer configurations and `plot_bg_compass.jl` generates the figures of the paper. These results are saved in the data folder in the `JLD2` format.
 
 
+# Running the examples
+
+To run the examples there is a couple options. Each julia script in *scritps* and *data* are standalone and can be run by themselves with `julia scripts/gaussian_lens.jl` for example. The ones in *scripts* will needne the data to have been already generated. For simplicity a script is provided to run all the examples at once with:
+
+```
+./scripts/run_all.sh
+
+```
+
+This script also accept input if you wish to only run one of the two models:
+
+```
+./scripts/run_all.sh BG
+./scripts/run_all.sh GL
+```
+
+
 ## Contact
 
 For questions or issue, please contact Mathias Loubiutin: mlouboutin3@gatech.edu
-[Devito]: htttp;//github.com/devitocodes/devito
-[JUDI]: http://github.com/slimgroup/JUDI.jl

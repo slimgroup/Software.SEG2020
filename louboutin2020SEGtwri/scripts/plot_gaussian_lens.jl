@@ -45,7 +45,7 @@ ax1.set_yticks([])
 title("θ", fontsize=20)
 colorbar(ax=ax1)
 
-savefig("../../figs/gl_model.png", bbox_inches="tight")
+savefig("./data/gl_model.png", bbox_inches="tight")
 
 
 ### Plot inital model and perturbationgradients
@@ -67,7 +67,7 @@ ax1.set_yticks([])
 title("δ m", fontsize=20)
 colorbar(ax=ax1)
 
-savefig("../../figs/gl_dm.png", bbox_inches="tight")
+savefig("./data/gl_dm.png", bbox_inches="tight")
 
 
 ### Plot gradients
@@ -125,4 +125,4 @@ ax1.set_yticks([])
 title("FWI acoustic", fontsize=20)
 colorbar(ax=ax1)
 
-savefig("../../figs/gl_wrong.png", bbox_inches="tight")
+savefig("./data/gl_wrong.png", bbox_inches="tight")
