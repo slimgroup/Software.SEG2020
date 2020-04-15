@@ -15,10 +15,12 @@ This software requires the follwoing dependencies to be installed:
 - [PyPlot], a plotting julia package based on `matplotlib`
 
 
-The julia packages can be installed as follows once [Devito] is installed. First install JUDI:
+The julia packages can be installed as follows once [Devito] is installed.
+First, you need install JUDI with the TTI branch that is currently separated from the stable master branch:
 
 ```
-julia -e 'using Pkg; Pkg.add("https://github.com/slimgroup/JUDI.jl.git")'
+julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/slimgroup/JUDI.jl.git", rev="v1-tti")'
+
 ```
 
 then configure python with the system one and rebuild the python calling poackage:

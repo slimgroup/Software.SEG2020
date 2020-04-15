@@ -20,7 +20,7 @@ using Distributed, JLD2, PyPlot, SegyIO, Images, PyCall, JUDI.TimeModeling
 d = (12.5f0, 12.5f0)
 o = (0f0, 0f0)
 
-@load "bg_tti.jld"
+@load "./data/bg_tti.jld"
 
 # Model
 

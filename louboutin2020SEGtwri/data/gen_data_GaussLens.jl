@@ -35,7 +35,7 @@ delta = smooth(.35f0 .* (2f0 .- v))
 z = range(-1, 1, length=n[1])
 theta = smooth(2f0 .* (2f0 .- v)) .*z
 
-model_true = Model(n, d, o, m_true;epsilon=epsilon;delta=delta;theta=theta)
+model_true = Model_TTI(n, d, o, m_true; epsilon=epsilon, delta=delta, theta=theta)
 
 
 ### Acquisition geometry
