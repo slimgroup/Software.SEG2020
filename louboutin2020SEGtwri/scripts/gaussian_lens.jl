@@ -24,6 +24,7 @@ idx_w = 0
 var = 20
 n = model_true.n
 d = model_true.d
+o = model_true.o
 
 
 function compute_gradients(model0, fsrc, dat)
@@ -46,13 +47,13 @@ function compute_gradients(model0, fsrc, dat)
     # [TWRIdual]
     inv_name = "TWRIdual"
 
-    ε0 = 0.0f0
+    ε0 = 0.01f0
     ε = Array{Float32, 1}(undef, fsrc.nsrc)
     ε .= ε0
     grad_corr = false
     objfact = 1f0
     v_bg = sqrt(1/m0[1])
-    freq_peak = 0.005f0
+    freq_peak = 0.003f0
     δ = 1f0*R(sqrt(2)/2)*v_bg/freq_peak
     weight_fun_pars = ("srcfocus", δ)
     fun!(F, G, x, weight_fun_pars, objfact) = objTWRIdual!(F, G, preproc(x), model0, fsrc, dat, ε;
@@ -105,5 +106,5 @@ g_fwi_tti_w, g_wri_tti_w = compute_gradients(model0_tti_err, fsrc2, dat2)
 # Acoustic model
 model0_acou = Model(n, d, o, model0_tti.m)
 
-g_fwi_a, g_wri_a = compute_gradients(model0_acou, fsrc2, dat2)
+g_fwi_a, g_wri_a = compute_gradients(model0_acou, fsrc, dat)
 @save "./data/gl_acou_g.jld" g_fwi_a g_wri_a model0_acou model_true

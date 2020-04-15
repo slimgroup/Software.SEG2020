@@ -37,7 +37,7 @@ if [ $GL == "Y" ] ; then
 fi
 
 # RunBG Compass
-if [ $GL == "Y" ] ; then
+if [ $BG == "Y" ] ; then
     echo "Running gradient computation for the BG compass"
     julia scripts/bg_compass.jl
     echo "Plotting results for the BG Compass"
