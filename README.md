@@ -6,4 +6,5 @@ The following software can be found:
 
 - `loubout2020SEGtwri` Time-domain wavefield reconstruction inversion in a TTI medium.
 - `yin2020SEGesi` Extended source imaging -- a unifying framework for seismic & medical imaging
-
+- `siahkoohi2020SEGuqi` Uncertainty quantification in imaging and automatic horizon tracking—a Bayesian deep-prior based approach
+- `siahkoohi2020SEGwdp` Weak deep priors for seismic imaging
