@@ -62,18 +62,18 @@ function compute_gradients(model0, fsrc, dat)
     fun_wri!(F, G, x) = fun!(F, G, x, weight_fun_pars, objfact)
     ### Computing gradients
     x0 = zeros(R, length(findall(mask .== true)))
-    m_inv = preproc(x0)
+
     G_FWI = zeros(R, n)
-    G = zeros(R, size(mask))
+    G = zeros(R, size(x0))
     fun!(true, G, x0)
     G_FWI[mask] .= G
     G_FWI = G_FWI/norm(G_FWI, Inf)
 
     ### Computing gradients
     x02 = zeros(R, length(findall(mask .== true)))
-    m_inv2 = preproc(x0)
+
     G_WRI = zeros(R, n)
-    G2 = zeros(R, size(mask))
+    G2 = zeros(R, size(x02))
     fun_wri!(true, G2, x02)
     G_WRI[mask] .= G2
     G_WRI = G_WRI/norm(G_WRI, Inf)

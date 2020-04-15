@@ -5,7 +5,7 @@ This repository reproduces the results presented in the above named 2020 SEG abs
 
 ## Dependencies
 
-The minimum requirements for theis software, and tested version, are `Python 3.x` and Julia 1.3.1`.
+The minimum requirements for theis software, and tested version, are `Python 3.x` and `Julia 1.3.1`.
 This software requires the follwoing dependencies to be installed:
 
 - [Devito], the finite-difference DSL and just-in-time compiler used for the TTI propagators. This can be installed with the command `pip install git+https://github.com/devitocodes/devio` or following the installation instructions for other platform or other modes of installation at [installation](http://devitocodes.github.io/devito/download.html).
@@ -19,7 +19,7 @@ The julia packages can be installed as follows once [Devito] is installed.
 First, you need install JUDI with the TTI branch that is currently separated from the stable master branch:
 
 ```
-julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/slimgroup/JUDI.jl.git", rev="v1-tti")'
+julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/slimgroup/JUDI.jl.git", rev="v1-tti"))'
 
 ```
 
