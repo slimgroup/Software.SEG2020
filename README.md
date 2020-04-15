@@ -5,3 +5,5 @@ This repository contains software and script to reproduce the results presented 
 The following software can be found:
 
 - `loubout2020SEGtwri` Time-domain wavefield reconstruction inversion in a TTI medium.
+- `yin2020SEGesi` Extended source imaging -- a unifying framework for seismic & medical imaging
+
