@@ -78,6 +78,22 @@ bash run_MLE.sh
 
 To generate and save figures shown in the manuscript, run `sample.py` with appropriate arguments. The figures will be saved in `sample/` directory.
 
+## Citation
+
+If you find this software useful in your research, please cite:
+
+
+```bibtex
+@unpublished {siahkoohi2020SEGwdp,
+	title = {Weak deep priors for seismic imaging},
+	year = {2020},
+	month = {4},
+	author = {Ali Siahkoohi and Gabrio Rizzuti and Felix J. Herrmann}
+	journal={arXiv preprint arXiv:2004.06835},
+	url = {https://arxiv.org/pdf/2004.06835.pdf}
+}
+```
+
 
 ## Questions
 
