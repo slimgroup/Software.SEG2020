@@ -2,7 +2,7 @@
 
 This repository will contain codes for generating results in Siahkoohi, A., Rizzuti, G., and Herrmann, F.J., Weak deep priors for seismic imaging.
 
-Codes for generating results in Siahkoohi, A., Rizzuti, G., and Herrmann, F.J., Weak deep priors for seismic imaging. arXiv preprint [arXiv:not-yet-piblished]().
+Codes for generating results in Siahkoohi, A., Rizzuti, G., and Herrmann, F.J., Weak deep priors for seismic imaging. arXiv preprint [arXiv:2004.06835](https://arxiv.org/abs/2004.06835).
 
 ## Prerequisites
 
