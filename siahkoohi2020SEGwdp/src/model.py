@@ -50,7 +50,7 @@ class LearnedImaging(object):
         self.extent = np.array([0., self.dm.shape[2]*spacing[0], 
             self.dm.shape[3]*spacing[1], 0.])/1.0e3
         self.dm = self.dm.to(self.device)
-        self.Lambda = args.Lambda*np.prod(self.y.shape)/np.prod(self.dm.shape)
+        self.Lambda = args.Lambda
 
         dataset_size = args.epoch//args.sample_freq
         self.sample_str = os.path.join(args.checkpoint_dir, args.experiment, "samples.hdf5")
