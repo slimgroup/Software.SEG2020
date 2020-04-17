@@ -3,7 +3,7 @@ import numpy as np
 import numpy.linalg as npla
 
 from devito.tools import memoized_meth, as_tuple
-from devito import Function, Constant, Dimension
+from devito import Function, Constant, Dimension, clear_cache
 
 from sources import PointSource, Receiver
 from geom_utils import AcquisitionGeometry
@@ -84,6 +84,7 @@ class WRIInterface(object):
         """
         Evaluate FWI objective functional/gradients for current m
         """
+        clear_cache()
         # Setting time sampling
         dt = self.model.critical_dt
 
@@ -117,6 +118,7 @@ class WRIInterface(object):
         """
         Evaluate TWRI objective functional/gradients for current (m, y)
         """
+        clear_cache()
         dt = self.model.critical_dt
 
         # Computing y in reduced mode (= residual) if not provided

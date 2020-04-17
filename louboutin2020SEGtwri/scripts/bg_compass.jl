@@ -12,12 +12,6 @@ using TWRIdual
 ### Load synthetic data
 @load "./data/BGCompass_data_tti.jld"
 
-# Filter data
-freq = 0.003f0
-df = .001f0
-dat2 = low_filter(dat, dat.geometry.dt[1]; fmin=1f3*(freq-df), fmax=1f3*(freq+df))
-fsrc2 = low_filter(fsrc, fsrc.geometry.dt[1]; fmin=1f3*(freq-df), fmax=1f3*(freq+df))
-
 
 ### Background model
 idx_w = 0
@@ -29,6 +23,12 @@ o = model_true.o
 
 
 function compute_gradients(model0, fsrc, dat, idx_w)
+    # Filter data
+    freq = 0.003f0
+    df = .001f0
+    dat2 = low_filter(dat, dat.geometry.dt[1]; fmin=1f3*(freq-df), fmax=1f3*(freq+df))
+    fsrc2 = low_filter(fsrc, fsrc.geometry.dt[1]; fmin=1f3*(freq-df), fmax=1f3*(freq+df))
+
     m0 = model0.m
     # Time sampling
     dt_comp = get_dt(model0)
@@ -43,7 +43,7 @@ function compute_gradients(model0, fsrc, dat, idx_w)
 
     # [FWI]
     inv_name = "FWI"
-    fun!(F, G, x) = objFWI!(F, G, preproc(x), model0, fsrc, dat; gradmprec_fun=postproc)
+    fun!(F, G, x) = objFWI!(F, G, preproc(x), model0, fsrc2, dat2; gradmprec_fun=postproc)
 
     # [TWRIdual]
     inv_name = "TWRIdual"
@@ -90,7 +90,7 @@ idx_w = 17
 model0_tti = deepcopy(model_true)
 model0_tti.m[:, idx_w+1:end] .= R.(imfilter(model0_tti.m[:, idx_w+1:end], Kernel.gaussian(var)))
 
-g_fwi_tti, g_wri_tti = compute_gradients(model0_tti, fsrc2, dat2, idx_w)
+g_fwi_tti, g_wri_tti = compute_gradients(model0_tti, fsrc, dat, idx_w)
 @save "./data/bg_tti_g.jld" g_fwi_tti g_wri_tti model0_tti model_true
 
 # Erronous Thomsen parameters model
@@ -102,13 +102,13 @@ model0_tti_err.delta[:, idx_w+1:end] = R.(imfilter(model0_tti_err.delta[:, idx_w
 model0_tti_err.theta[:, idx_w+1:end] = R.(imfilter(model0_tti_err.theta[:, idx_w+1:end], Kernel.gaussian(var)))
 
 
-g_fwi_tti_w, g_wri_tti_w = compute_gradients(model0_tti_err, fsrc2, dat2, idx_w)
+g_fwi_tti_w, g_wri_tti_w = compute_gradients(model0_tti_err, fsrc, dat, idx_w)
 @save "./data/bg_tti_g_w.jld" g_fwi_tti_w g_wri_tti_w model0_tti_err model_true
 
 # Acoustic model
 model0_acou = Model(n, d, o, model0_tti.m)
 
-g_fwi_a, g_wri_a = compute_gradients(model0_acou, fsrc2, dat2, idx_w)
+g_fwi_a, g_wri_a = compute_gradients(model0_acou, fsrc, dat, idx_w)
 @save "./data/bg_acou_g.jld" g_fwi_a g_wri_a model0_acou model_true
 
 
@@ -118,7 +118,7 @@ idx_w = 0
 model0_tti = deepcopy(model_true)
 model0_tti.m[:, idx_w+1:end] .= R.(imfilter(model0_tti.m[:, idx_w+1:end], Kernel.gaussian(var)))
 
-g_fwi_tti_ww, g_wri_tti_ww = compute_gradients(model0_tti, fsrc2, dat2, idx_w)
+g_fwi_tti_ww, g_wri_tti_ww = compute_gradients(model0_tti, fsrc, dat, idx_w)
 @save "./data/bg_tti_g_ww.jld" g_fwi_tti_ww g_wri_tti_ww model0_tti model_true
 
 # Erronous Thomsen parameters model
@@ -130,11 +130,11 @@ model0_tti_err.delta[:, idx_w+1:end] = R.(imfilter(model0_tti_err.delta[:, idx_w
 model0_tti_err.theta[:, idx_w+1:end] = R.(imfilter(model0_tti_err.theta[:, idx_w+1:end], Kernel.gaussian(var)))
 
 
-g_fwi_tti_ww_w, g_wri_tti_ww_w = compute_gradients(model0_tti_err, fsrc2, dat2, idx_w)
+g_fwi_tti_ww_w, g_wri_tti_ww_w = compute_gradients(model0_tti_err, fsrc, dat, idx_w)
 @save "./data/bg_tti_g_ww_w.jld" g_fwi_tti_ww_w g_wri_tti_ww_w model0_tti_err model_true
 
 # Acoustic model
 model0_acou = Model(n, d, o, model0_tti.m)
 
-g_fwi_a_ww, g_wri_a_ww = compute_gradients(model0_acou, fsrc2, dat2, idx_w)
+g_fwi_a_ww, g_wri_a_ww = compute_gradients(model0_acou, fsrc, dat, idx_w)
 @save "./data/bg_acou_g_ww.jld" g_fwi_a_ww g_wri_a_ww model0_acou model_true
