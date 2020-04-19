@@ -4,7 +4,7 @@ PyPlot.rc("font", family="serif")
 PyPlot.rc("xtick", labelsize=20) 
 PyPlot.rc("ytick", labelsize=20)
 
-@load "bg_tti_g.jld"
+@load "./data/bg_tti_g.jld"
 
 n = model_true.n
 d = model_true.d
@@ -45,7 +45,7 @@ savefig("./data/bg_model.png", bbox_inches="tight")
 
 # Plot model perturbations
 # True water layer
-@load "bg_tti_g.jld"
+@load "./data/bg_tti_g.jld"
 plt.figure(figsize=(30, 30))
 subplot(221)
 imshow(model0_tti.m', vmin=1/4.5^2, vmax=.44, cmap="jet", extent=extent, aspect="auto")
@@ -63,7 +63,7 @@ ax1 = gca()
 title("δ m", fontsize=20)
 colorbar(ax=ax1)
 # Wrong water layer
-@load "bg_tti_g_w.jld"
+@load "./data/bg_tti_g_w.jld"
 subplot(222)
 imshow(model0_tti.m', vmin=1/4.5^2, vmax=.44, cmap="jet", extent=extent, aspect="auto")
 ax1 = gca()
@@ -84,7 +84,7 @@ savefig("./data/bg_dm.png", bbox_inches="tight")
 
 
 ### gradients with true water
-@load "bg_tti_g.jld"
+@load "./data/bg_tti_g.jld"
 
 # true tti params
 figure(figsize=(30, 30))
@@ -104,7 +104,7 @@ title("FWI true anisotropy", fontsize=20)
 colorbar(ax=ax1)
 
 # Error in tti params
-@load "tti_g_tti_data_w.jld"
+@load "./data/bg_tti_g_w.jld"
 subplot(323)
 imshow(g_wri_tti_w', vmin=-.05, vmax=.05, cmap="jet", extent=extent, aspect="auto")
 ylabel("Depth (m)", fontsize=20)
@@ -121,7 +121,7 @@ title("FWI inaccurate anisotropy", fontsize=20)
 colorbar(ax=ax1)
 
 # Acoustic
-@load "bg_acou_g.jld"
+@load "./data/bg_acou_g.jld"
 subplot(325)
 imshow(g_wri_a', vmin=-.01, vmax=.01, cmap="jet", extent=extent, aspect="auto")
 xlabel("X (m)", fontsize=20)
@@ -141,7 +141,7 @@ savefig("./data/bg_true_water.png", bbox_inches="tight")
 
 
 # Wrong water layer
-@load "bg_tti_g_ww.jld"
+@load "./data/bg_tti_g_ww.jld"
 
 # true tti params
 figure(figsize=(30, 30))
@@ -161,7 +161,7 @@ title("FWI true anisotropy", fontsize=20)
 colorbar(ax=ax1)
 
 # Error in tti params
-@load "bg_tti_g_ww_w.jld"
+@load "./data/bg_tti_g_ww_w.jld"
 subplot(323)
 imshow(g_wri_tti_ww_w', vmin=-.05, vmax=.05, cmap="jet", extent=extent, aspect="auto")
 ylabel("Depth (m)", fontsize=20)
@@ -178,7 +178,7 @@ title("FWI inaccurate anisotropy", fontsize=20)
 colorbar(ax=ax1)
 
 # Acoustic
-@load "bg_acou_g_ww.jld"
+@load "./data/bg_acou_g_ww.jld"
 subplot(325)
 imshow(g_wri_a_ww', vmin=-.01, vmax=.01, cmap="jet", extent=extent, aspect="auto")
 xlabel("X (m)", fontsize=20)
