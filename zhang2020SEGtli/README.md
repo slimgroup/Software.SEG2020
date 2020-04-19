@@ -80,7 +80,6 @@ If you find this software useful in your research, please cite:
 @unpublished {zhang2020SEGtli,
 	title = {Transfer learning in large-scale ocean bottom seismic wavefield reconstruction},
 	year = {2020},
-	note = {Submitted to SEG},
 	month = {4},
 	author = {Mi Zhang and Ali Siahkoohi and Felix J. Herrmann},
 	journal={arXiv preprint arXiv:2004.07388},
