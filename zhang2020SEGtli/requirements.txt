@@ -1,0 +1,6 @@
+h5py==2.8.0
+matplotlib==3.0.3
+numpy>=1.14.0
+hdf5storage
+tqdm
+tensorboardX
