@@ -9,7 +9,7 @@ This code has been tested using Deep Learning AMI (Amazon Linux) Version 24.2 on
 ```bash
 cd $HOME
 git clone https://github.com/slimgroup/Software.SEG2020.git
-cd $HOME/Software.SEG2020/tree/master/zhang2020SEGtli
+cd $HOME/Software.SEG2020/zhang2020SEGtli
 conda create -n wavefield-reconstruction pip python=3.6
 source activate wavefield-reconstruction
 conda install pytorch torchvision cudatoolkit=10.1 -c pytorch #If your system has GPU
