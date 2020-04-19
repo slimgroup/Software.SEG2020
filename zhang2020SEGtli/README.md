@@ -19,15 +19,15 @@ pip install --user -r  requirements.txt
 
 ## Dataset
 
-Links have been provided in `RunTraining.sh` and `RunTransferLearning.sh` script to automatically download the ``14.33`` and ``14.66`` Hz monochromatic seismic data, respectively, into the necessary directory. Total size of the dataset for each fequency is 6.52GB + 6.52GB + 6.52GB + 118KB.
+Links have been provided in `RunTraining.sh` and `RunTransferLearning.sh` script to automatically download the 14.33 and 14.66 Hz monochromatic seismic data, respectively, into the necessary directory. Total size of the dataset for each fequency is 6.52GB + 6.52GB + 6.52GB + 118KB.
 
 ## Script descriptions
 
-`RunTraining.sh`\: script for running training. It will make `model/` and `data/` directory in `$HOME` for storing training/testing data and saved neural net checkpoints and final results, respectively. Next, it will train a neural net for the experiment for ``14.33`` Hz monochromatic seismic data.
+`RunTraining.sh`\: script for running training. It will make `model/` and `data/` directory in `$HOME` for storing training/testing data and saved neural net checkpoints and final results, respectively. Next, it will train a neural net for the experiment for 14.33 Hz monochromatic seismic data.
 
-`RunTesting.sh`\: script for testing the trained neural net. It will reconstruct the entire subsampled ``14.33`` Hz monochromatic seismic data and place the result in `sample/` directory to be used for plotting purposes.
+`RunTesting.sh`\: script for testing the trained neural net. It will reconstruct the entire subsampled 14.33 Hz monochromatic seismic data and place the result in `sample/` directory to be used for plotting purposes.
 
-`RunTransferLearning.sh`\: script for running transfer learning on CNN trained to recover ``14.33`` Hz data in order to recover ``14.66`` Hz data. It will load the pre-trained neural net and perform transfer learning.
+`RunTransferLearning.sh`\: script for running transfer learning on CNN trained to recover 14.33 Hz data in order to recover 14.66 Hz data. It will load the pre-trained neural net and perform transfer learning.
 
 `src/main.py`\: constructs `wavefield_reconstrcution` class using given arguments in `RunTraining.sh`\, defined in `model.py` and calls `train` function in the defined  `wavefield_reconstrcution` class.
 
@@ -53,7 +53,7 @@ bash RunTransferLearning.sh
 
 ```
 
-To evaluated the trained network on test data set (``14.66`` Hz) run the following. It will automatically load the latest checkpoint saved.
+To evaluated the trained network on test data set (14.66 Hz) run the following. It will automatically load the latest checkpoint saved.
 
 ```bash
 # Running on GPU
@@ -62,7 +62,7 @@ bash RunTesting.sh
 
 ```
 
-To generate and save figures shown in paper for ``14.66`` Hz monochromatic seismic data run the following:
+To generate and save figures shown in paper for 14.66 Hz monochromatic seismic data run the following:
 
 ```bash
 
