@@ -33,9 +33,11 @@ Pkg.add("LinearAlgebra")
 ## Software
 This software is divided as follows:
 
+ The ground truth data collected from the Gulf of Suez [Full.mat](https://slim.gatech.edu/PublicationsData/zhang2020SEGwrw/).
+
 *data/*:
  
- This directory contains the ground truth data collected from the Gulf of Suez, Jittered subsampling indexes and one unweighted initial prior information.
+ This directory contains Jittered subsampling indexes[ind.mat] and one unweighted initial prior information[Idx_30.mat].
  
 *script/*: 
 
