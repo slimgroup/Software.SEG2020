@@ -88,6 +88,22 @@ This script also accept input if you wish to only run one of the two models:
 ./scripts/run_all.sh GL
 ```
 
+## Citation
+
+If you find this software useful in your research, we would appreciate it if you cite:
+
+```bibtex
+@unpublished {louboutin2020SEGtwri,
+	title = {Time-domain Wavefield Reconstruction Inversion in a TTI medium},
+	year = {2020},
+	note = {Submitted to SEG},
+	month = {4},
+	abstract = {We introduce a generalization of time-domain wavefield reconstruction inversion to anisotropic acoustic modeling. Wavefield reconstruction inversion has been extensively researched in recent years for its ability to mitigate cycle skipping. The original method was formulated in the frequency domain with acoustic isotropic physics. However, frequency-domain modeling requires sophisticated iterative solvers that are difficult to scale to industrial-size problems and more realistic physical assumptions, such as tilted transverse isotropy, object of this study. The work presented here is based on a recently proposed dual formulation of wavefield reconstruction inversion, which allows time-domain propagator that are suitable to both large scales and more accurate physics.},
+	keywords = {anisotropy, FWI, SEG, TTI, WRI},
+	url = {https://slim.gatech.edu/Publications/Public/Submitted/2020/louboutin2020SEGtwri/louboutin2020SEGtwri.html},
+	author = {Mathias Louboutin and Gabrio Rizzuti and Felix J. Herrmann}
+}
+```
 
 ## Contact
 
