@@ -24,7 +24,7 @@ o = model_true.o
 
 function compute_gradients(model0, fsrc, dat, idx_w)
     # Filter data
-    freq = 0.003f0
+    freq = 0.006f0
     df = .001f0
     dat2 = low_filter(dat, dat.geometry.dt[1]; fmin=1f3*(freq-df), fmax=1f3*(freq+df))
     fsrc2 = low_filter(fsrc, fsrc.geometry.dt[1]; fmin=1f3*(freq-df), fmax=1f3*(freq+df))
@@ -54,10 +54,10 @@ function compute_gradients(model0, fsrc, dat, idx_w)
     grad_corr = false
     objfact = 1f0
     v_bg = sqrt(1/m0[1])
-    freq_peak = 0.003f0
+    freq_peak = 0.006f0
     δ = 1f0*R(sqrt(2)/2)*v_bg/freq_peak
     weight_fun_pars = ("srcfocus", δ)
-    fun!(F, G, x, weight_fun_pars, objfact) = objTWRIdual!(F, G, preproc(x), model0, fsrc, dat, ε;
+    fun!(F, G, x, weight_fun_pars, objfact) = objTWRIdual!(F, G, preproc(x), model0, fsrc2, dat2, ε;
                                                         objfact = objfact, comp_alpha = true, gradmprec_fun=postproc,
                                                         grad_corr = grad_corr, weight_fun_pars = weight_fun_pars)
 
