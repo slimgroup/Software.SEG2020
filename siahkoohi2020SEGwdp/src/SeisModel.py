@@ -53,43 +53,6 @@ class ForwardBorn(Function):
         return g.view(1, 1, g.shape[0], g.shape[1]), None, None, None, None
 
 
-class AdjointBorn(Function):
-
-    @staticmethod
-    def forward(ctx, input, model, src, rec):
-
-        # Save modeling parameters for backward pass
-        ctx.model = model
-        ctx.src = src
-        ctx.rec = rec
-
-        # Adjoint born modeling
-        input = input.detach()
-        u0 = forward_modeling(model, src.coordinates.data, src.data, rec.coordinates.data, 
-            save=True, space_order=8)[1]
-        g = adjoint_born(model, rec.coordinates.data, input.numpy().data[:], u=u0, 
-            isic=True, space_order=8)
-
-        # Remove padding
-        nb = model.nbpml
-        g = torch.from_numpy(g[nb:-nb, nb:-nb])
-
-        return g.view(1, 1, g.shape[0], g.shape[1])
-
-    @staticmethod
-    def backward(ctx, grad_output):
-
-        # Prepare input
-        grad_output = grad_output.detach()
-        ctx.model.dm = DevFunc(name="dm", grid=ctx.model.grid)
-        # ctx.model.dm.data[:] = ctx.model.pad(grad_output[0,0,:,:].numpy())
-        ctx.model.dm.data[:] = nn.ReflectionPad2d((40))(grad_output).numpy()[0, 0, :, :]
-
-        # Linearized forward modeling
-        d_lin = forward_born(ctx.model, ctx.src.coordinates.data, ctx.src.data,
-                             ctx.rec.coordinates.data, isic=True)
-
-        return torch.from_numpy(d_lin), None, None, None
 
 
 
