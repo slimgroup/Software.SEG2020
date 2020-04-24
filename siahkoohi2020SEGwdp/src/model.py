@@ -37,8 +37,7 @@ class LearnedImaging(object):
    
         self.y = h5py.File(data_path, 'r')["data"][...]
 
-        lin_err_std = 0.0
-        self.sigma_squared = args.eta + lin_err_std**2
+        self.sigma_squared = args.et
         self.objective = args.objective
         self.num_exps = np.prod(self.y.shape[0])
         self.epoch = torch.Tensor([args.epoch])
@@ -295,8 +294,8 @@ class LearnedImaging(object):
             sample_file = h5py.File(self.sample_str, 'r+')
             num_samples_hf = sample_file["num_samples"]
 
-            sample_file["samples"][num_samples_hf[0]:(num_samples_hf[0] + len(self.samples)), ...] = \
-                np.array(self.samples)
+            sample_file["samples"][num_samples_hf[0]:(num_samples_hf[0] + \
+                len(self.samples)), ...] = np.array(self.samples)
             num_samples_hf[0] += len(self.samples)
 
             sample_file.close()

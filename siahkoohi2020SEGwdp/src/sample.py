@@ -60,8 +60,7 @@ class Sample(object):
         self.extent = np.array([0., self.dm.shape[2]*self.spacing[0], 
             self.dm.shape[3]*self.spacing[1], 0.])/1.0e3
         self.dm = self.dm.to(self.device)
-        if not args.phase == 'weak_prior':
-            self.load(args, os.path.join(args.checkpoint_dir, args.experiment))
+        self.load(args, os.path.join(args.checkpoint_dir, args.experiment))
 
     def load(self, args, checkpoint_dir):
 

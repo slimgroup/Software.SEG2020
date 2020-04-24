@@ -43,8 +43,3 @@ class ForwardBorn(Function):
         g = torch.from_numpy(g[nb:-nb, nb:-nb]).to(ctx.device)
 
         return g.view(1, 1, g.shape[0], g.shape[1]), None, None, None, None
-
-
-
-
-

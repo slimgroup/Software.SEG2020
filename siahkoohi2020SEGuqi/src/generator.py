@@ -49,28 +49,6 @@ def find_padding_dim(input_dim, d_dim=[32, 32]):
     padding_dim[1, 1] = int(ceil((desired_dim[1] - input_dim[1])/2.))
     return padding_dim, desired_dim
 
-# class ResidualBlock(torch.nn.Module):
-#     """ResidualBlock
-#     introduced in: https://arxiv.org/abs/1512.03385
-#     recommended architecture: http://torch.ch/blog/2016/02/04/resnets.html
-#     """
-
-#     def __init__(self, channels):
-#         super(ResidualBlock, self).__init__()
-#         self.conv1 = ConvLayer(channels, channels, kernel_size=3, stride=1)
-#         self.in1 = torch.nn.InstanceNorm2d(channels, affine=True)
-#         self.conv2 = ConvLayer(channels, channels, kernel_size=3, stride=1)
-#         self.in2 = torch.nn.InstanceNorm2d(channels, affine=True)
-#         self.relu = torch.nn.ReLU()
-
-#     def forward(self, x):
-#         residual = x
-#         out = self.relu(self.in1(self.conv1(x)))
-#         out = self.in2(self.conv2(out))
-#         out = out + residual
-#         return out
-
-
 class generator(nn.Module):
     def __init__(self, model_shape,
         num_input_channels=1, num_output_channels=1, 

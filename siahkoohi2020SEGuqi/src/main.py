@@ -19,10 +19,8 @@ parser.add_argument('--batchsize', dest='batchsize', type=int, default=1,
     help='batchsize')
 parser.add_argument('--lr', dest='lr', type=float, default=0.001, 
     help='initial learning rate for adam')
-parser.add_argument('--weight_decay', dest='weight_decay', type=float, default=1.0, 
+parser.add_argument('--weight_decay', dest='weight_decay', type=float, default=0., 
     help='weight_decay')
-parser.add_argument('--Lambda', dest='Lambda', type=float, default=0.1, 
-    help='weak prior weight')
 parser.add_argument('--phase', dest='phase', default='train', 
     help='train, test')
 parser.add_argument('--save_freq', dest='save_freq', type=int, default=100, 
@@ -37,11 +35,8 @@ parser.add_argument('--sample_dir', dest='sample_dir', default='./sample',
     help='sample are saved here')
 parser.add_argument('--cuda', dest='cuda', type=int, default=0, 
     help='set it to 1 for running on GPU, 0 for CPU')
-parser.add_argument('--objective', dest='objective', default='MAP_w', 
-    help='objective')
 parser.add_argument('--vel_dir', dest='vel_dir', default='./vel_dir', 
     help='path to save velocity model')
-
 args = parser.parse_args()
 
 def main():
