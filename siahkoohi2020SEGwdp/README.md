@@ -41,7 +41,7 @@ We use a 2D subset of the real Kirchoff time migrated [Parihaka-3D](https://wiki
 
 `run_deep_prior.sh`\: script for running inversion/training w/ deep prior method. It  creates `checkpoint/`, `log/`, and `sample/` directories in `$HOME/Software.SEG2020/siahkoohi2020SEGwdp/` for storing intermediate parameters, loss function log, and samples for monitoring, respectively. The drawn samples from the posterior will be stored at `training-logs.pt` located at `checkpoint/`.
 
-`run_MLE.sh`\: script for running MLE-based inversion/training. It  creates `checkpoint/`, `log/`, and `sample/` directories in `$HOME/Software.SEG2020/siahkoohi2020SEGwdp/` for storing intermediate parameters, loss function log, and samples for monitoring, respectively. The drawn samples from the posterior will be stored at `training-logs.pt` located at `checkpoint/`.
+`run_MLE.sh`\: script for running MLE-based inversion/training. It  creates `checkpoint/`, `log/`, and `sample/` directories in `$HOME/Software.SEG2020/siahkoohi2020SEGwdp/` for storing intermediate parameters, loss function log, and samples for monitoring, respectively. The final and intermediate inversion results and training loss function logs will be stored at `samples.hdf5` and `training-logs.pt`, respectively, located at `checkpoint/`.
 
 `src/main.py`\: constructs `LearnedImaging` class using given arguments and calls `train` function in the defined  `LearnedImaging` class.
 
