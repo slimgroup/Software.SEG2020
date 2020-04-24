@@ -36,13 +36,13 @@ We use a 2D subset of the real Kirchoff time migrated [Parihaka-3D](https://wiki
 
 ## Script descriptions
 
-`run_deep_prior.sh`\: script for running inversion/training w/ the proporsed method. It  creates `checkpoint/`, `log/`, and `sample/` directories in `$HOME/Software.SEG2020/siahkoohi2020SEGuqi/` for storing intermediate parameters, loss function log, and samples for monitoring, respectively. The drawn samples from the posterior and training loss function logs will be stored at `samples.hdf5` and `training-logs.pt`, respectively, located at `checkpoint/`.
+`run_deep_prior.sh`\: script for running inversion/training w/ the proposed method. It  creates `checkpoint/`, `log/`, and `sample/` directories in `$HOME/Software.SEG2020/siahkoohi2020SEGuqi/` for storing intermediate parameters, loss function log, and samples for monitoring, respectively. The drawn samples from the posterior and training loss function logs will be stored at `samples.hdf5` and `training-logs.pt`, respectively, located at `checkpoint/`.
 
 `src/main.py`\: constructs `LearnedImaging` class using given arguments and calls `train` function in the defined  `LearnedImaging` class.
 
 `src/model.py`: includes `LearnedImaging` class definition, which involves `train` and `test` functions.
 
-`src/sample.py`: script for loading the obtained estimations after (while) training and creating figures in the manuscript. Not that the script will throw an assertation error if there are no estumations.
+`src/sample.py`: script for loading the obtained estimations after (while) training and creating figures in the manuscript. Not that the script will throw an assertation error if there are no estimations.
 
 ### Running the code
 
@@ -56,7 +56,7 @@ bash run_deep_prior.sh
 
 To generate and save figures shown in the manuscript, run `sample.py` with appropriate arguments. The figures will be saved in `sample/` directory.
 
-We use the automated horizon tracking [software](https://github.com/xinwucwp/mhe) introduced by [Wu and Fomel (2018)](https://library.seg.org/doi/abs/10.1190/geo2017-0830.1). Samples from posterior storedt at `checkpoint/samples.hdf5` can be feed into the mentioned software to obtained tracked horizons.
+We use the automated horizon tracking [software](https://github.com/xinwucwp/mhe) introduced by [Wu and Fomel (2018)](https://library.seg.org/doi/abs/10.1190/geo2017-0830.1). Samples from posterior stored at `checkpoint/samples.hdf5` can be feed into the mentioned software to obtained tracked horizons.
 
 ## Citation
 
@@ -64,13 +64,13 @@ If you find this software useful in your research, please cite:
 
 
 ```bibtex
-@unpublished {siahkoohi2020SEGwdp,
-	title = {Weak deep priors for seismic imaging},
-	year = {2020},
-	month = {4},
-	author = {Ali Siahkoohi and Gabrio Rizzuti and Felix J. Herrmann}
-	journal={arXiv preprint arXiv:2004.06835},
-	url = {https://arxiv.org/pdf/2004.06835.pdf}
+@unpublished {siahkoohi2020EAGEhorizonUQ,
+  title = {Uncertainty quantification in imaging and automatic horizon tracking---a Bayesian deep-prior based approach},
+  year = {2020},
+  month = {4},
+  author = {Ali Siahkoohi and Gabrio Rizzuti and Felix J. Herrmann},
+  journal={arXiv preprint arXiv:2004.00227},
+  url = {https://arxiv.org/pdf/2004.00227.pdf}
 }
 ```
 
@@ -81,7 +81,7 @@ Please contact alisk@gatech.edu for further questions.
 
 ## Acknowledgments
 
-The authors thank Zezhou Cheng for his open-access [GitHub repository](https://github.com/ZezhouCheng/GP-DIP). We also thank Philipp Witte for his contribuitions in integrating Devito operators in PyTorch.
+The authors thank Zezhou Cheng for his open-access [GitHub repository](https://github.com/ZezhouCheng/GP-DIP). We also thank Philipp Witte for his contributions in integrating Devito operators in PyTorch.
 
 
 ## Author

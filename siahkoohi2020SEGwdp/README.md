@@ -47,7 +47,7 @@ We use a 2D subset of the real Kirchoff time migrated [Parihaka-3D](https://wiki
 
 `src/model.py`: includes `LearnedImaging` class definition, which involves `train` and `test` functions.
 
-`src/sample.py`: script for loading the obtained estimations after (while) training and creating figures in the manuscript. Not that the script will throw an assertation error if there are no estumations.
+`src/sample.py`: script for loading the obtained estimations after (while) training and creating figures in the manuscript. Not that the script will throw an assertation error if there are no estimations.
 
 ### Running the code
 
@@ -101,7 +101,7 @@ Please contact alisk@gatech.edu for further questions.
 
 ## Acknowledgments
 
-The authors thank Zezhou Cheng for his open-access [GitHub repository](https://github.com/ZezhouCheng/GP-DIP). We also thank Philipp Witte for his contribuitions in integrating Devito operators in PyTorch.
+The authors thank Zezhou Cheng for his open-access [GitHub repository](https://github.com/ZezhouCheng/GP-DIP). We also thank Philipp Witte for his contributions in integrating Devito operators in PyTorch.
 
 
 ## Author
