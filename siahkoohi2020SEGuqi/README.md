@@ -56,7 +56,7 @@ bash run_deep_prior.sh
 
 To generate and save figures shown in the manuscript, run `sample.py` with appropriate arguments. The figures will be saved in `sample/` directory.
 
-We use the automated horizon tracking [software](https://github.com/xinwucwp/mhe) introduced by [Wu and Fomel (2018)](https://library.seg.org/doi/abs/10.1190/geo2017-0830.1). Samples from posterior stored at `checkpoint/samples.hdf5` can be feed into the mentioned software to obtained tracked horizons.
+We use the automated horizon tracking [software](https://github.com/xinwucwp/mhe) introduced by [Wu and Fomel (2018)](https://library.seg.org/doi/abs/10.1190/geo2017-0830.1). Samples from posterior stored at `checkpoint/samples.hdf5` can be feed into the mentioned software to obtain tracked horizons.
 
 ## Citation
 
