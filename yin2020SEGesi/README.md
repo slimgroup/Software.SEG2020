@@ -70,15 +70,15 @@ $ julia Run_Seismic_Medical_Breast.jl
 If you find this software useful in your research, we would appreciate it if you cite:
 
 ```bibtex
-@unpublished {yin2020SEGesi,
-	title = {Extended source imaging {\textendash}- a unifying framework for seismic \& medical imaging},
-	year = {2020},
-	note = {Submitted to SEG},
-	month = {4},
-	abstract = {We present three imaging modalities that live on the crossroads of seismic and medical imaging. Through the lens of extended source imaging, we can draw deep connections among the fields of wave-equation based seismic and medical imaging, despite first appearances. From the seismic perspective, we underline the importance to work with the correct physics and spatially varying velocity fields. Medical imaging, on the other hand, opens the possibility for new imaging modalities where outside stimuli, such as laser or radar pulses, can not only be used to identify endogenous optical or thermal contrasts but that these sources can also be used to insonify the medium so that images of the whole specimen can in principle be created.},
-	keywords = {medical imaging, SEG, seismic imaging, variable projection},
-	url = {https://slim.gatech.edu/Publications/Public/Submitted/2020/yin2020SEGesi/yin2020SEGesi.html},
-	author = {Ziyi Yin and Rafael Orozco and Philipp A. Witte and Mathias Louboutin and Gabrio Rizzuti and Felix J. Herrmann}
+@conference {yin2020SEGesi,
+    title = {Extended source imaging {\textendash}- a unifying framework for seismic \& medical imaging},
+    booktitle = {SEG Technical Program Expanded Abstracts},
+    year = {2020},
+    note = {Accepted in SEG},
+    month = {4},
+    keywords = {medical imaging, SEG, seismic imaging, variable projection},
+    url = {https://slim.gatech.edu/Publications/Public/Conferences/SEG/2020/yin2020SEGesi/yin2020SEGesi.html},
+    author = {Ziyi Yin and Rafael Orozco and Philipp A. Witte and Mathias Louboutin and Gabrio Rizzuti and Felix J. Herrmann}
 }
 ```
 
