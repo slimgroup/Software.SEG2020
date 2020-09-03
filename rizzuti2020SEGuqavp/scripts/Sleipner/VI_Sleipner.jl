@@ -25,7 +25,7 @@ abc_geom = data_dict[:abc_geom]
 acc = data_dict[:acc_mod]
 
 # Model
-model_dict = wload(datadir("Sleipner", "Sleipner_model.bson"))
+model_dict = wload(projectdir()*"/scripts/Sleipner/Sleipner_model.bson")
 Mtrue = model_dict[:Mtrue]
 Mbg = model_dict[:Mbg]
 
@@ -54,7 +54,7 @@ function proj_bounds(m::Array{Float32}, mmin, mmax)
     m_[m_ .> mmax] .= mmax
     return m_
 end
-fact_tune = 2f-8
+fact_tune = 1f-8
 # prec(Δm::Array{Float32, 4}) = Model(Mbg.geom, proj_bounds(Mbg.m.+fact_tune*reshape(Δm, nz, :), mmin, mmax))
 prec(Δm::Array{Float32, 4}) = Model(Mbg.geom, proj_bounds(Mmap.m.+fact_tune*reshape(Δm, nz, :), mmin, mmax))
 post(g::Model) = fact_tune*reshape(g.m, (1, 1, nz, :))
@@ -65,7 +65,8 @@ negloglike_fun(m::Model; compute_grad::Bool = true) = negLogLikelihood_gauss(dat
 
 # Log-prior
 D = derivative_linop(Mbg.geom)
-neglogpr_fun(m::Model; compute_grad::Bool = true) = negLogPrior_L1smooth(m, σ2_pr, ϵ2; m0 = Mpr, D = D, compute_grad = compute_grad)
+# neglogpr_fun(m::Model; compute_grad::Bool = true) = negLogPrior_L1smooth(m, σ2_pr, ϵ2; m0 = Mpr, D = D, compute_grad = compute_grad)
+neglogpr_fun(m::Model; compute_grad::Bool = true) = negLogPrior_gauss(m, σ2_pr; m0 = Mpr, D = D, compute_grad = compute_grad)
 
 # Log-posterior
 neglogpost_fun(m::Model) = negLogPost(m, negloglike_fun, neglogpr_fun; compute_grad = true)
@@ -88,7 +89,7 @@ end
 
 # Generator
 depth = 5
-n_hidden = 64
+n_hidden = Mbg.geom.nz
 batchsize = 2^3
 net_type = NetworkHINT1D
 T = net_type(nz, batchsize, n_hidden, depth; permute="full")
@@ -116,7 +117,7 @@ opt = Optimiser(ExpDecay(lr, decay, decay_step, clip), ADAM(lr))
 
 # Train model
 fval = Array{Float32, 1}(undef, 0)
-training!(T, fval, loss, Ztrain, nepochs, batchsize, opt; verbose_b=true)
+training!(T, fval, loss, Ztrain, nepochs, batchsize, opt; verbose_b=true, gradclip=true)
 
 
 ## Testing

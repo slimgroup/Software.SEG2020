@@ -1,6 +1,6 @@
 # Parameterizing uncertainties with deep invertible networks, an application to reservoir characterization
 
-This repository reproduces the results presented in the above named 2020 SEG abstract.
+This repository reproduces the results presented in the corresponding SEG2020 abstract.
 
 
 ## Dependencies
@@ -15,7 +15,7 @@ This software has been tested with `Julia 1.5.1`, and requires the following dep
 
 # Running the examples
 
-For Gaussian mixture density estimation, from parent directory run the command:
+For the Gaussian mixture sampling estimation, run the command from the parent directory:
 ```
 julia ./scripts/VI_gaussmixture.jl
 ```
@@ -24,18 +24,18 @@ For running uncertainty quantification for full-waveform inversion on the Sleipn
 ```
 julia ./scripts/gendata_Sleipner.jl
 ```
-Deterministic FWI should then be run:
+Deterministic FWI should then be run by:
 ```
 julia ./scripts/FWI_Sleipner.jl
 ```
-Finally, for training uncertainty quantification, run:
+Finally, for training uncertainty quantification:
 ```
 julia ./scripts/VI_Sleipner.jl
 ```
 
 ## Citation
 
-If you find this software useful in your research, we would appreciate it if you cite:
+For citations:
 
 ```bibtex
 @conference {rizzuti2020SEGuqavp,
@@ -53,4 +53,4 @@ If you find this software useful in your research, we would appreciate it if you
 
 ## Contact
 
-For questions or issue, please contact Gabrio Rizzuti: rizzuti.gabrio@gatech.edu
+Gabrio Rizzuti: rizzuti.gabrio@gatech.edu

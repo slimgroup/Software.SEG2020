@@ -2,7 +2,7 @@
 # Date: August, 2020
 # Copyright: Georgia Institute of Technology, 2020
 #
-# Generate synthetic Sleipner data
+# Generate synthetic data for the Sleipner model
 
 
 ## Module loading
@@ -17,7 +17,7 @@ using Random; seed = 1; Random.seed!(seed)
 ## Loading models
 
 # Load velocity model
-model_dict = wload(datadir("Sleipner", "Sleipner_model.bson"))
+model_dict = wload(projectdir()*"/scripts/Sleipner/Sleipner_model.bson")
 Mtrue = model_dict[:Mtrue]
 Mbg = model_dict[:Mbg]
 

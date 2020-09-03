@@ -25,7 +25,7 @@ abc_geom = data_dict[:abc_geom]
 acc = data_dict[:acc_mod]
 
 # Model
-model_dict = wload(datadir("Sleipner", "Sleipner_model.bson"))
+model_dict = wload(projectdir()*"/scripts/Sleipner/Sleipner_model.bson")
 Mtrue = model_dict[:Mtrue]
 Mbg = model_dict[:Mbg]
 
@@ -36,7 +36,6 @@ M0  = invpars_dict[:M0]
 σ2_n = invpars_dict[:σ2_n]
 ϵ2 = invpars_dict[:ϵ2]
 σ2_pr = invpars_dict[:σ2_pr]
-# σ2_pr = 2.1115392f-18
 mmin = invpars_dict[:mmin]
 mmax = invpars_dict[:mmax]
 
@@ -97,22 +96,24 @@ end
 M0 = deepcopy(Mbg)
 method = LBFGS()
 niter = 100
-optimopt = Optim.Options(iterations = niter, store_trace = true, show_trace = true, show_every = 1)
+optimopt = Optim.Options(iterations = niter, store_trace = true, show_trace = true)#, show_every = 1)
 
-n_noise = 10
+n_noise = 2^7
 noise_d = sqrt(σ2_n)*randn(Float32, size(dat_n.d)..., n_noise)
 noise_m = sqrt(σ2_pr)*randn(Float32, size(Mpr.m)..., n_noise)
 Mrto = Array{Float32, 2}(undef, nz, n_noise)
 fval = Array{Array{Float32, 1}, 1}(undef, n_noise)
-for i = 1:n_noise
+time = @elapsed Threads.@threads for i = 1:n_noise
+    println(i, "/", n_noise)
     neglogpost_fun_n!(F, G, m) = neglogpost_fun!(F, G, m, dat_n+noise_d[:, :, :, i], Model(Mbg.geom, noise_m[:, :, i]))
     result = optimize(Optim.only_fg!(neglogpost_fun_n!), reshape(M0.m, :, 1, 1), method, optimopt)
     Mrto[:, i] = prec(Optim.minimizer(result)).m
     fval[i] = Optim.f_trace(result)
 end
+println(time)
 
 
-# ## Saving results
-#
-# results_dict = Dict(:noise_d => noise_d, :noise_m => noise_m, :Mrto => Mrto, :fval => fval)
-# wsave(datadir("Sleipner", "Sleipner_RTO.bson"), results_dict)
+## Saving results
+
+results_dict = Dict(:noise_d => noise_d, :noise_m => noise_m, :Mrto => Mrto, :fval => fval)
+wsave(datadir("Sleipner", "Sleipner_RTO.bson"), results_dict)

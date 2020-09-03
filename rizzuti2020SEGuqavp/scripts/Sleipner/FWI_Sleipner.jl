@@ -26,7 +26,7 @@ abc_geom = data_dict[:abc_geom]
 acc = data_dict[:acc_mod]
 
 # Model
-model_dict = wload(datadir("Sleipner", "Sleipner_model.bson"))
+model_dict = wload(projectdir()*"/scripts/Sleipner/Sleipner_model.bson")
 Mtrue = model_dict[:Mtrue]
 Mbg = model_dict[:Mbg]
 
@@ -55,7 +55,7 @@ negloglike_fun(m::Model; compute_grad::Bool = false) = negLogLikelihood_gauss(da
 D = derivative_linop(Mbg.geom)
 Mpr = Model(Mbg.geom, zeros(Float32, nz, 1))
 Dx = D.eval(Mtrue-Mpr)
-# ϵ2 = 1f-3*norm(Dx.m, Inf)^2f0
+ϵ2 = 1f-3*norm(Dx.m, Inf)^2f0
 # σ2_pr = 1f-2*sum(sqrt.(Dx.m.^2f0.+ϵ2))[1]
 # neglogpr_fun(m::Model; compute_grad::Bool = false) = negLogPrior_L1smooth(m, σ2_pr, ϵ2; m0 = Mpr, D = D, compute_grad = compute_grad)
 σ2_pr = 1f-3*norm(Dx)[1]^2f0
