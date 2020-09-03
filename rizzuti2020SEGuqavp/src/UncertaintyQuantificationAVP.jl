@@ -14,6 +14,7 @@ using Flux, Flux.Optimise, InvertibleNetworks
 include("./utils/datatypes.jl")
 include("./utils/logobj.jl")
 include("./utils/derivatives.jl")
+include("./utils/density_utils.jl")
 include("./utils/training_utils.jl")
 
 # Modeling routines
