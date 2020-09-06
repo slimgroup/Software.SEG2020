@@ -55,8 +55,8 @@ function proj_bounds(m::Array{Float32}, mmin, mmax)
     return m_
 end
 fact_tune = 1f-8
-# prec(Δm::Array{Float32, 4}) = Model(Mbg.geom, proj_bounds(Mbg.m.+fact_tune*reshape(Δm, nz, :), mmin, mmax))
-prec(Δm::Array{Float32, 4}) = Model(Mbg.geom, proj_bounds(Mmap.m.+fact_tune*reshape(Δm, nz, :), mmin, mmax))
+prec(Δm::Array{Float32, 4}) = Model(Mbg.geom, proj_bounds(Mbg.m.+fact_tune*reshape(Δm, nz, :), mmin, mmax))
+# prec(Δm::Array{Float32, 4}) = Model(Mbg.geom, proj_bounds(Mmap.m.+fact_tune*reshape(Δm, nz, :), mmin, mmax))
 post(g::Model) = fact_tune*reshape(g.m, (1, 1, nz, :))
 
 # Log-likelihood
@@ -105,10 +105,10 @@ trainsize = 2^7
 Ztrain = randn(Float32, 1, 1, nz, trainsize)
 
 # N of iterations
-nepochs = 2^6
+nepochs = 2^11
 
 # Optimizer
-lr = 1f-3
+lr = 1f-4
 decay = 0.9f0
 nbatches = Int64(round(trainsize/batchsize))
 decay_step = nbatches*2^6
@@ -117,7 +117,7 @@ opt = Optimiser(ExpDecay(lr, decay, decay_step, clip), ADAM(lr))
 
 # Train model
 fval = Array{Float32, 1}(undef, 0)
-training!(T, fval, loss, Ztrain, nepochs, batchsize, opt; verbose_b=true, gradclip=true)
+time = @elapsed training!(T, fval, loss, Ztrain, nepochs, batchsize, opt; verbose_b=true, gradclip=true)
 
 
 ## Testing
@@ -133,10 +133,13 @@ params_exp = Dict(
     :seed => seed, #seed
     :batchsize => batchsize, :trainsize => trainsize, :Ztrain => Ztrain, :nepochs => nepochs, # training pars
     :lr => lr, :decay => decay, :decay_step => decay_step, :clip => clip, # optimizer pars
-    :net_type => string(net_type), :depth => depth, :n_hidden => n_hidden) # network arch
+    :net_type => string(net_type), :depth => depth, :n_hidden => n_hidden, # network arch
+    :fact_tune => fact_tune)
 results_exp = copy(params_exp)
 results_exp[:fval] = fval
 results_exp[:net_params] = get_params(T)
 results_exp[:Ztest] = Ztest
+results_exp[:Ztrain] = Ztrain
 results_exp[:Mtest] = Mtest
-wsave(datadir("Sleipner", savename("VI", params_exp, "bson")), results_exp)
+results_exp[:time] = time
+wsave(datadir("Sleipner", savename("Sleipner_VI", params_exp, "bson")), results_exp)
