@@ -54,7 +54,7 @@ This software is divided as follows:
 If you find this software useful in your research, we would appreciate it if you cite:
 
 ```bibtex
-@unpublished {zhang2020SEGwrw,
+@conference {zhang2020SEGwrw,
 	title = {Wavefield recovery with limited-subspace weighted matrix factorizations},
 	year = {2020},
 	note = {Accepted in SEG},
