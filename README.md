@@ -10,3 +10,4 @@ The following software can be found:
 - `siahkoohi2020SEGuqi` [Uncertainty quantification in imaging and automatic horizon tracking—a Bayesian deep-prior based approach](https://slim.gatech.edu/content/uncertainty-quantification-imaging-and-automatic-horizon-tracking%E2%80%94-bayesian-deep-prior-based)
 - `siahkoohi2020SEGwdp` [Weak deep priors for seismic imaging](https://slim.gatech.edu/content/weak-deep-priors-seismic-imaging)
 - `zhang2020SEGtli` [Transfer learning in large-scale ocean bottom seismic wavefield reconstruction](https://slim.gatech.edu/content/transfer-learning-large-scale-ocean-bottom-seismic-wavefield-reconstruction)
+- `zhang2020SEGwrw` [Wavefield recovery with limited-subspace weighted matrix factorizations](https://slim.gatech.edu/content/wavefield-recovery-limited-subspace-weighted-matrix-factorizations)
