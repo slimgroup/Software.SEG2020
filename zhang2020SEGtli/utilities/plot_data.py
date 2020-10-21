@@ -166,7 +166,7 @@ class plotting_class(object):
         # #####################################################
 
         file_Interp = h5py.File(os.path.join(self.result_path, 'ReciprocityGAN_freq' + str(self.frequency) + '_A_train_' + \
-            str(self.sampling_rate) + 'SamplingRate_' + str(self.sampling_scheme) + '_evolving_training_set', \
+            str(self.sampling_rate) + 'SamplingRate_' + str(self.sampling_scheme) + '_evolving_training_set_TransferLearning_from_14.33', \
             'sample', 'mapping_result.hdf5'), 'r')
         InterpResult = file_Interp["result"][:, :, :, 0].astype(np.float32)
 
