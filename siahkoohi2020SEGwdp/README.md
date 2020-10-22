@@ -84,13 +84,16 @@ If you find this software useful in your research, please cite:
 
 
 ```bibtex
-@unpublished {siahkoohi2020SEGwdp,
-	title = {Weak deep priors for seismic imaging},
-	year = {2020},
-	month = {4},
-	author = {Ali Siahkoohi and Gabrio Rizzuti and Felix J. Herrmann}
-	journal={arXiv preprint arXiv:2004.06835},
-	url = {https://arxiv.org/pdf/2004.06835.pdf}
+@conference {siahkoohi2020SEGwdp,
+    title = {Weak deep priors for seismic imaging},
+    booktitle = {SEG Technical Program Expanded Abstracts},
+    year = {2020},
+    month = {09},
+    pages = {2998--3002},
+    doi = {10.1190/segam2020-3417568.1},
+    software = {https://github.com/slimgroup/Software.SEG2020},
+    author = {Ali Siahkoohi and Gabrio Rizzuti and Felix J. Herrmann},
+    url = {https://arxiv.org/pdf/2004.06835.pdf}
 }
 ```
 
