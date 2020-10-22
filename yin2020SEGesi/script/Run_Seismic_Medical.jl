@@ -5,10 +5,8 @@
 include("gen_geometry.jl")
 
 using PyPlot, FFTW, Images
-using JUDI.TimeModeling, JUDI4Flux, Flux, JOLI, SegyIO
-using LinearAlgebra, Random, Statistics, Tracker
-using Tracker: grad, update!
-using ImageFiltering
+using JUDI.TimeModeling, JUDI4Flux, JOLI
+using LinearAlgebra, Random, Statistics
 using IterativeSolvers
 using JLD
 

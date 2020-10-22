@@ -7,10 +7,8 @@ include("modeling_extended_source_spg_raf_function.jl")
 
 
 using PyPlot, FFTW, Images
-using JUDI.TimeModeling, JUDI4Flux, Flux, JOLI, SegyIO
-using LinearAlgebra, PyPlot, Random, Statistics, Tracker
-using Tracker: grad, update!
-using ImageFiltering
+using JUDI.TimeModeling, JUDI4Flux, Flux, JOLI
+using LinearAlgebra, PyPlot, Random, Statistics
 using IterativeSolvers
 using JLD
 using MAT
