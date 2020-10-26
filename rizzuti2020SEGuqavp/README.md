@@ -17,20 +17,20 @@ This software has been tested with `Julia 1.5.1`, and requires the following dep
 
 For the Gaussian mixture sampling estimation, run the command from the parent directory:
 ```
-julia ./scripts/VI_gaussmixture.jl
+julia ./scripts/GaussMixture/VI_gaussmixture.jl
 ```
 
 For running uncertainty quantification for full-waveform inversion on the Sleipner dataset, seismic data need be generated first by running:
 ```
-julia ./scripts/gendata_Sleipner.jl
+julia ./scripts/Sleipner/gendata_Sleipner.jl
 ```
 Deterministic FWI should then be run by:
 ```
-julia ./scripts/FWI_Sleipner.jl
+julia ./scripts/Sleipner/FWI_Sleipner.jl
 ```
 Finally, for training uncertainty quantification:
 ```
-julia ./scripts/VI_Sleipner.jl
+julia ./scripts/Sleipner/VI_Sleipner.jl
 ```
 
 ## Citation
