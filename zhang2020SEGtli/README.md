@@ -77,13 +77,16 @@ The saving directory can be changed by modifying `savePath` variable in `utiliti
 If you find this software useful in your research, please cite:
 
 ```bibtex
-@unpublished {zhang2020SEGtli,
+@conference {zhang2020SEGtli,
 	title = {Transfer learning in large-scale ocean bottom seismic wavefield reconstruction},
+	booktitle = {SEG Technical Program Expanded Abstracts},
 	year = {2020},
-	month = {4},
-	author = {Mi Zhang and Ali Siahkoohi and Felix J. Herrmann},
-	journal={arXiv preprint arXiv:2004.07388},
-	url = {https://arxiv.org/pdf/2004.07388.pdf}
+	note = {(SEG, virtual)},
+	month = {09},
+	pages = {1666-1670},
+	keywords = {SEG, transfer learning, wavefield reconstruction},
+	doi = {10.1190/segam2020-3427882.1},
+	author = {Mi Zhang and Ali Siahkoohi and Felix J. Herrmann}
 }
 ```
 

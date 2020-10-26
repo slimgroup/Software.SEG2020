@@ -64,13 +64,16 @@ If you find this software useful in your research, please cite:
 
 
 ```bibtex
-@unpublished {siahkoohi2020EAGEhorizonUQ,
-  title = {Uncertainty quantification in imaging and automatic horizon tracking---a Bayesian deep-prior based approach},
-  year = {2020},
-  month = {4},
-  author = {Ali Siahkoohi and Gabrio Rizzuti and Felix J. Herrmann},
-  journal={arXiv preprint arXiv:2004.00227},
-  url = {https://arxiv.org/pdf/2004.00227.pdf}
+@conference {siahkoohi2020SEGuqi,
+    title = {Uncertainty quantification in imaging and automatic horizon tracking{\textemdash}a Bayesian deep-prior based approach},
+    booktitle = {SEG Technical Program Expanded Abstracts},
+    year = {2020},
+    month = {09},
+    pages = {1636--1640},
+    doi = {10.1190/segam2020-3417560.1},
+    software = {https://github.com/slimgroup/Software.SEG2020},
+    author = {Ali Siahkoohi and Gabrio Rizzuti and Felix J. Herrmann},
+    url = {https://arxiv.org/pdf/2004.00227.pdf}
 }
 ```
 
