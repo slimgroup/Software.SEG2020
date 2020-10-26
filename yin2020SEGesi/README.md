@@ -7,14 +7,8 @@ This repository reproduces the results presented in [*Extended source imaging --
 The minimum requirements for theis software, and tested version, are `Python 3.x` and `Julia 1.3.1`.
 This software requires the following dependencies to be installed:
 
-- [Devito](https://www.devitoproject.org), the finite-difference DSL and just-in-time compiler used for the wave equation operators. This can be installed with the command `pip install git+https://github.com/devitocodes/devio` or following the installation instructions for other platform or other modes of installation at [installation](http://devitocodes.github.io/devito/download.html)
-- [JUDI](https://github.com/slimgroup/JUDI.jl), the julia linear algebra DSL built on top of Devito to generate the anisotropic data. Please follow the installation instruction at [JUDI](https://github.com/slimgroup/JUDI.jl) 
-- [JOLI](https://github.com/slimgroup/JOLI.jl), Julia framework for constructing matrix-free linear operators with explicit domain/range type control and applying them in basic algebraic matrix-vector operations
-- [SetIntersectionProjection.jl](https://github.com/slimgroup/SetIntersectionProjection.jl), the Julia software for computing projections onto intersections of convex and non-convex constraint sets, mainly used for tv-norm regularized inversion
-- [JLD](https://github.com/JuliaIO/JLD.jl), a julia IO package used here to read and write files
-- [Images](https://github.com/JuliaImages/Images.jl), an image processing julia packsge 
-- [PyPlot](https://github.com/JuliaPy/PyPlot.jl), a plotting julia package based on `matplotlib`
-- [MAT](https://github.com/JuliaIO/MAT.jl): a julia package to read .mat files 
+- [Devito](https://www.devitoproject.org), a python software as the finite-difference DSL and just-in-time compiler used for the wave equation operators. This can be installed with the command `pip install git+https://github.com/devitocodes/devito` or following the installation instructions for other platform or other modes of installation at [installation](http://devitocodes.github.io/devito/download.html)
+- [DrWatson](https://juliadynamics.github.io/DrWatson.jl/dev/): a julia software in order to reproduce scientific project easily.
 
 then configure python with the system one and rebuild the python calling poackage:
 

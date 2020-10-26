@@ -1,9 +1,13 @@
 # Author: Ziyi Yin, Rafael Orozco, Philipp Witte, Mathias Louboutin, Gabrio Rizzuti, Felix J. Herrmann
 # Date: April, 2020
+
+using DrWatson
+@quickactivate "ExtSrcImg"
+
 include("gen_geometry.jl")
 
 using PyPlot, FFTW, Images
-using JUDI.TimeModeling, JUDI4Flux, JOLI
+using JUDI.TimeModeling, JOLI
 using LinearAlgebra, PyPlot, Random, Statistics
 using IterativeSolvers
 using JLD
