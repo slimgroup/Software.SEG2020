@@ -1,5 +1,7 @@
 export Weighted_LR
 
+using DrWatson
+@quickactivate "LimitedWeightedLR"
 using JOLI
 using GenSPGL
 
@@ -7,8 +9,7 @@ using SeisJOLI
 using Arpack
 using LinearAlgebra
 
-include("../script/NLfunForward_test1.jl") ##include the weighted formward function
-include("../GenSPGL/src/Composite/funCompR1.jl") ##include a function in GenSPGL
+include(projectdir()*"/scripts/NLfunForward_test1.jl") ##include the weighted formward function
 
 function Weighted_LR(Pre_L::Tx, Pre_R::Tx, Df_test::Tx, RM::joKron, MH::joLinearFunction, rank::Int, r_sub::Int)where {ETx<:Number, Tx<:AbstractMatrix{ETx}}
 #Pre_L: prior information of L
@@ -73,7 +74,7 @@ opts = spgOptions(optTol = 1e-5,
                   ignorePErr = true,
                   iterations = 150,
                   verbosity = 1,
-		  funCompositeR = funCompR1)
+		  funCompositeR = GenSPGL.funCompR1)
 
 ### using spgl1 to implenment the algorithm
 xLS_jl, r, g, info = spgl1(NLfunForward_test1, b[:], x = xinit[:], tau = tau,

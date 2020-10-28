@@ -2,6 +2,30 @@
 
 This repository will contain codes for generating results in Zhang, Y., Sharan, S., Lopez, O, and Herrmann, F.J., Wavefield recovery with limited-subspace weighted matrix factorizations.
 
+# LimitedWeightedLR
+
+This code base is using the Julia Language and [DrWatson](https://juliadynamics.github.io/DrWatson.jl/stable/)
+to make a reproducible scientific project named
+> LimitedWeightedLR
+
+It is authored by Yijun Zhang.
+
+To (locally) reproduce this project, do the following:
+
+0. Download this code base. Notice that raw data are typically not included in the
+   git-history and may need to be downloaded independently and save the following data in "/data/exp_raw/".
+   The ground truth data collected from the Gulf of Suez [Full.mat](https://slim.gatech.edu/PublicationsData/zhang2020SEGwrw/).
+1. Open a Julia console and do:
+   ```
+   julia> using Pkg
+   julia> Pkg.activate("path/to/this/project")
+   julia> Pkg.instantiate()
+   ```
+
+This will install all necessary packages for you to be able to run the scripts and
+everything should work out of the box.
+
+Or, you could setup the environment with following dependencies:
 ## Dependencies
 
 The minimum requirements for theis software, and tested version, are `Python 3.x` and `Julia 1.2.0`.
@@ -35,11 +59,11 @@ This software is divided as follows:
 
  The ground truth data collected from the Gulf of Suez [Full.mat](https://slim.gatech.edu/PublicationsData/zhang2020SEGwrw/).
 
-*data/*:
+*data/exp_raw/*:
  
  This directory contains Jittered subsampling indexes[ind.mat] and one unweighted initial prior information[Idx_30.mat].
  
-*script/*: 
+*scripts/*: 
 
  This directory contains codes to run the corresponding experiments.You can run the 'RecursiveLR.jl' to reproduce the experiments, also you can modify the files to change the settings and design your own experiment.
  

@@ -1,3 +1,6 @@
+using DrWatson
+@quickactivate "LimitedWeightedLR"
+using BSON
 using MAT
 using PyPlot
 using JOLI
@@ -7,16 +10,16 @@ using Arpack
 using LinearAlgebra
 
 ###load the weighted algorithm function
-include("../script/Weighted_LR.jl") 
+include(projectdir()*"/scripts/Weighted_LR.jl") 
 
 ###load the true data
-datafile = MAT.matopen("../data/Full.mat")
+datafile = MAT.matopen(projectdir()*"/data/exp_raw/Full.mat")
 data_full = read(datafile,"Full_Data")
 datafull = copy(data_full[:,1:355,1:355])
 nff,ns,nr = size(datafull)
 
 ###loaded the jittered index for subsampling
-sub_index = MAT.matopen("../data/ind.mat")
+sub_index = MAT.matopen(projectdir()*"/data/exp_raw/ind.mat")
 ind = read(sub_index,"ind")
 close(sub_index)
 
@@ -33,11 +36,11 @@ Final_result = zeros(Complex{Float64},nr,ns,nff)
 Final_SNR = zeros(Float64,nff,1)
 
 ###weighted LR to interpolate the data
-for sliceNum = 31:304  #(round([7Hz,75Hz]/df+1=[30,304]))
+for sliceNum = 31:32#304  #(round([7Hz,75Hz]/df+1=[30,304]))
 
     if sliceNum == 31 
 	# load unweighted result as prior information
-	pre_int = MAT.matopen(string("../data/Idx_", string(sliceNum-1),".mat"))
+	pre_int = MAT.matopen(string(projectdir()*"/data/exp_raw/Idx_", string(sliceNum-1),".mat"))
 	pre_L = read(pre_int,"L1")
 	pre_R = read(pre_int,"R1")
 	close(pre_int)
@@ -47,7 +50,7 @@ for sliceNum = 31:304  #(round([7Hz,75Hz]/df+1=[30,304]))
     	println("Num=",sliceNum)
     else 
 	# load prior information(neighbor low frequency results)
-	pre_int = MAT.matopen(string("../julia_result/Idx_", string(sliceNum-1),".mat"))
+	pre_int = MAT.matopen(string(projectdir()*"/data/exp_pro/Idx_", string(sliceNum-1),".mat"))
 	pre_L = read(pre_int,"L1")
 	pre_R = read(pre_int,"R1")
 	close(pre_int)
@@ -60,7 +63,7 @@ for sliceNum = 31:304  #(round([7Hz,75Hz]/df+1=[30,304]))
     Final_result[:,:,sliceNum] = Result;
 	
     # save each frequency result
-    file = matopen(string("../julia_result/Idx_",string(sliceNum),".mat"), "w")
+    file = matopen(string(projectdir()*"/data/exp_pro/Idx_",string(sliceNum),".mat"), "w")
     write(file,string("Final_result",string(sliceNum)),Result)
     write(file,"SNR",SNR)
     write(file,"L1",L1)
@@ -69,7 +72,7 @@ for sliceNum = 31:304  #(round([7Hz,75Hz]/df+1=[30,304]))
 end
 
 ### save all limited-subspace weighted result
-file = matopen("../julia_result/recursive_data.mat", "w")
+file = matopen(projectdir()*"/data/exp_pro/recursive_data.mat", "w")
 write(file,"Final_result",Final_result)
 write(file,"Final_SNR",Final_SNR)
 close(file)
