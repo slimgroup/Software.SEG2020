@@ -1,0 +1,16 @@
+name = "LimitedWeightedLR"
+authors = ["Yijun Zhang"]
+
+[deps]
+Arpack = "7d9fca2a-8960-54d3-9f78-7d1dccf2cb97"
+BSON = "fbb218c0-5317-5bc6-957e-2ee96dd4b1f0"
+DrWatson = "634d3b9d-ee7a-5ddf-bec9-22491ea816e1"
+GenSPGL = "46767539-6b09-4d43-90af-09e8ecbe3fb9"
+JOLI = "bb331ad6-a1cf-11e9-23da-9bcb53c69f6f"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+MAT = "23992714-dd62-5051-b70f-ba57cb901cac"
+PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
+SeisJOLI = "1749d201-7e2c-4f32-afd0-28b1f357fcf8"
+
+[compat]
+julia = "1.4.2"
