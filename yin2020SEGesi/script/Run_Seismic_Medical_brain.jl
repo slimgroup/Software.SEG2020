@@ -10,7 +10,7 @@ include("modeling_extended_source_spg_raf_function.jl")
 
 
 using PyPlot, FFTW, Images
-using JUDI.TimeModeling, JOLI
+using JUDI, JOLI, JUDI4Flux
 using LinearAlgebra, PyPlot, Random, Statistics
 using IterativeSolvers
 using JLD

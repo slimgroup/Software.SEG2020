@@ -9,7 +9,7 @@ using DrWatson
 include("gen_geometry.jl")
 
 using PyPlot, FFTW, Images
-using JUDI.TimeModeling, JOLI
+using JUDI, JOLI, JUDI4Flux
 using LinearAlgebra, Random, Statistics
 using IterativeSolvers
 using JLD

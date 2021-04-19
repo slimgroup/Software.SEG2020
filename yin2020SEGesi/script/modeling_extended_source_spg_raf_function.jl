@@ -5,7 +5,7 @@
 #
 
 using SetIntersectionProjection
-using JUDI.TimeModeling, SeisIO, JOLI, PyPlot, ProximalOperators, IterativeSolvers, JUDI.SLIM_optim, MAT, Dierckx, SpecialFunctions, LinearAlgebra, SparseArrays, FFTW
+using JUDI, SeisIO, JOLI, PyPlot, ProximalOperators, IterativeSolvers, SlimOptim, MAT, Dierckx, SpecialFunctions, LinearAlgebra, SparseArrays, FFTW
 using Statistics, Random
 
 ## setup for bas
